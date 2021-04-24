@@ -14,8 +14,8 @@ function addItem(e) {
     }
     input.value = "";
 
-    let li = document.createElement("li"); // create li tag
-    li.innerText = task; // li task ke ander task gya. <li> li ka innerText yha gya</li>
+    let li = document.createElement("li");
+    li.innerText = task;
     li.addEventListener("dblclick", deleteTask);
     if (e.key == "ArrowUp") {
       ul.insertBefore(li, ul.firstChild);
