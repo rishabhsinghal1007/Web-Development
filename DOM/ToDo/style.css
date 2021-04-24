@@ -1,0 +1,66 @@
+.body {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.container {
+  background-color: blanchedalmond;
+  color: black;
+}
+
+.container,
+.input-container,
+.task-container {
+  border: 1px solid;
+}
+
+h1 {
+  height: 9.5vh;
+  text-align: center;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  padding: 1vh;
+  border-width: 1px;
+  border-style:solid;
+}
+.input-container {
+  height: 20vh;
+  width: 100%;
+  padding-top: 25px;
+}
+
+.task-container {
+  height: 70vh;
+  overflow: hidden;
+}
+
+.task-list {
+  padding-left: 0;
+}
+
+.task-input {
+  text-align: center;
+  font-size: 1.5rem;
+  height: 4rem;
+  width: 40%;
+  margin: auto;
+  display: block;
+}
+
+.task-container li {
+  font-size: 1.5rem;
+  background-color: rgba(0, 5, 75, 0);
+  width: 60%;
+  text-align: center;
+  margin: 10px auto 0px auto;
+}
+
+@media screen and (max-width: 768px) {
+  .task-input,
+  .task-container li {
+    width: 70%;
+  }
+}
