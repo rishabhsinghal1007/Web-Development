@@ -1,0 +1,189 @@
+body {
+   margin: 0;
+}
+
+* {
+   box-sizing: border-box;
+   margin: 0;
+}
+
+h1 {
+   height: 8vh;
+   text-align: center;
+   padding: 0.5vh;
+   border-style: solid;
+   border-width: 1px;
+   background-color: antiquewhite;
+}
+
+.navbar {
+   height: 12vh;
+   background-color: black;
+   display: flex;
+}
+
+.ticket-container {
+   height: 80vh;
+   background-color: rgb(248, 242, 190);
+   position: relative;
+   padding: 3rem;
+}
+
+.filter-container,
+.add-delete-container {
+   height: 8vh;
+   margin-top: 2vh;
+   margin-left: 8vw;
+   border-radius: 3px;
+   background-color: cornflowerblue;
+}
+
+.filter-container {
+   width: 18vw;
+   display: flex;
+}
+
+.add-delete-container {
+   width: 9vw;
+   display: flex;
+}
+
+.filter {
+   height: 100%;
+   width: 25%;
+}
+
+.pink-color-btn,
+.blue-color-btn,
+.light-green-color-btn,
+.bisque-color-btn {
+   display: block;
+   width: 40%;
+   height: 40%;
+   border-radius: 3px;
+   margin-top: calc(8vh * 0.3);
+   margin-bottom: calc(8vh * 0.3);
+   margin-left: calc(4.5vw * 0.3);
+   margin-right: calc(4.5vw * 0.3);
+}
+
+.pink-color-btn,
+.modal-pink-filter,
+.ticket-color-pink {
+   background-color: pink;
+}
+
+.blue-color-btn,
+.modal-blue-filter,
+.ticket-color-blue {
+   background-color: blue;
+}
+
+.light-green-color-btn,
+.modal-light-green-filter,
+.ticket-color-light-green {
+   background-color: lightgreen;
+}
+
+.bisque-color-btn,
+.modal-bisque-color-filter,
+.ticket-color-bisque {
+   background-color: red;
+}
+
+.filter:hover {
+   background-color: rgba(29, 27, 27, 0.966);
+   cursor: pointer;
+}
+
+.add,
+.delete {
+   height: 100%;
+   width: 50%;
+}
+
+.action-btn {
+   display: block;
+   height: 40%;
+   width: 40%;
+   margin-top: calc(8vh * 0.3);
+   margin-bottom: calc(8vh * 0.3);
+   margin-left: calc(4.5vw * 0.3);
+   margin-right: calc(4.5vw * 0.3);
+   background-color: white;
+   padding-right: 35%;
+   padding-bottom: 40%;
+}
+
+.add:hover,
+.delete:hover {
+   background-color: rgba(29, 27, 27, 0.966);
+   cursor: pointer;
+}
+
+.modal {
+   box-shadow: -7px 7px 5px 5px gray;
+   height: 15rem;
+   width: 28rem;
+   background-color: white;
+   display: flex;
+   position: absolute;
+   top: 6.5rem;
+   left: calc((100vw - 28rem) / 2);
+}
+
+.task-to-be-added {
+   width: 70%;
+   height: 100%;
+   padding: 3rem;
+   outline: none;
+   overflow: auto;
+}
+
+.modal-priority-list {
+   display: flex;
+   flex-direction: column;
+   width: 30%;
+   height: 100%;
+   justify-content: space-between;
+   padding: 3rem;
+   background-color: grey;
+}
+
+.modal-filter {
+   height: 20%;
+   width: 100%;
+}
+
+.modal-filter:hover {
+   opacity: 0.5;
+   cursor: pointer;
+}
+
+.modal-filter.active {
+   border: 3px solid;
+}
+
+.ticket {
+   height: 9rem;
+   width: 16rem;
+   background-color: white;
+}
+
+.ticket-color {
+   height: 6%;
+   width: 100%;
+}
+
+.ticket-id {
+   height: 15%;
+   width: 100%;
+   padding: 3%;
+   color: grey;
+}
+
+.task {
+   height: 79%;
+   width: 100%;
+   padding: 3%;
+}
