@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<title>Add-Remove</title>
+	</head>
+
+	<body>
+		<!-- Add element -->
+
+		<!-- <button>Create Div</button>
+    <script>
+
+        $("button").click(function () {
+            //    let div = $("<div></div>").text("hello");
+            let div = $("<div></div>").css({ "width": "200px", "background-color": "blue", "height": "200px" });   // creation of element with few properties
+            let p = $("<p></p>").text("hello");
+
+            // $("body").append(div);  // adding element as a child in the end
+            // $("body").prepend(div);
+
+            $("body").prepend(div, p);
+
+        });
+
+    </script> -->
+
+		<!-- Remove element -->
+		<!-- <div><p>hello</p></div>
+
+		<div class="test"><p>hello</p></div>
+		<button>remove Div</button>
+		<script>
+			$("button").click(function () {
+				// $("div").remove();         // remove all div
+
+				// remove div with class
+
+				// $("div").remove(".test");
+				$("div.test").remove();
+			});
+		</script> -->
+
+		<!-- empty the element  -->
+
+		<div><p>hello</p></div>
+		<button>remove Div</button>
+		<script>
+			$("button").click(function () {
+				$("div").empty();
+			});
+		</script>
+	</body>
+</html>
