@@ -258,6 +258,8 @@ body {
 .sheet-bar {
 	display: flex;
 	align-items: center;
+	height: 4vh;
+	width: 100vw;
 }
 
 .sheet-scroller {
@@ -267,7 +269,7 @@ body {
 }
 
 .sheet-tab-container {
-	margin-right: 15px;
+	margin-right: 10px;
 	display: flex;
 	border-left: 0.5px solid lightgray;
 }
@@ -288,15 +290,15 @@ body {
 	cursor: pointer;
 }
 
-.sheet-tab.selected:hover {
-	background-color: white;
-	cursor: default;
-}
-
 .sheet-tab.selected {
 	color: #217346;
 	border-bottom: 5px solid #217346;
 	outline: none;
+}
+
+.sheet-tab.selected:hover {
+	background-color: white;
+	cursor: default;
 }
 
 .add-sheet {
