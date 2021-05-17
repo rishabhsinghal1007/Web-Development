@@ -18,10 +18,10 @@ for (let i = 1; i <= 100; i++) {
 		let rem = n % 26;
 		if (rem == 0) {
 			str = "Z" + str;
-			n = Math.floor(n / 26) - 1;
+			n = Math.floor((n / 26)) - 1;
 		} else {
-			str = String.fromCharCode(rem - 1 + 65) + str;
-			n = Math.floor(n / 26);
+			str = String.fromCharCode((rem - 1) + 65) + str;
+			n = Math.floor((n / 26));
 		}
 	}
 	$("#columns").append(`<div class="column-name">${str}</div>`);
@@ -33,41 +33,60 @@ $("#cells").scroll(function () {
 	$("#rows").scrollTop(this.scrollTop);
 });
 
-let cellData = {"Sheet1" : []};
+let cellData = { "Sheet1": [] };
 let totalSheets = 1;
 let selectedSheet = "Sheet1";
-
+let lastlyAddedSheetNumber = 1;
 let mousemoved = false;
 let startCellStored = false;
 let startCell;
 let endCell;
 
 function loadNewSheet() {
-    $("#cells").text("");
-    for (let i = 1; i <= 100; i++) {
-        let row = $('<div class="cell-row"></div>');
-        let rowArray = [];
-        for (let j = 1; j <= 100; j++) {
-            row.append(`<div id="row-${i}-col-${j}" class="input-cell" contenteditable="false"></div>`);
-            rowArray.push({
-                "font-family": "Noto Sans",
-                "font-size": 14,
-                "text": "",
-                "bold": false,
-                "italic": false,
-                "underlined": false,
-                "alignment": "left",
-                "color": "#444",
-                "bgcolor": "#fff"
-            });
-        }
-        cellData[selectedSheet].push(rowArray);
-        $("#cells").append(row);
-    }
-    addEventsToCells();
+	$("#cells").text("");
+	for (let i = 1; i <= 100; i++) {
+		let row = $('<div class="cell-row"></div>');
+		let rowArray = [];
+		for (let j = 1; j <= 100; j++) {
+			row.append(`<div id="row-${i}-col-${j}" class="input-cell" contenteditable="false"></div>`);
+			rowArray.push({
+				"font-family": "Noto Sans",
+				"font-size": 14,
+				"text": "",
+				"bold": false,
+				"italic": false,
+				"underlined": false,
+				"alignment": "left",
+				"color": "#444",
+				"bgcolor": "#fff"
+			});
+		}
+		cellData[selectedSheet].push(rowArray);
+		$("#cells").append(row);
+	}
+	addEventsToCells();
+	addSheetTabEventListeners();
 }
 
 loadNewSheet();
+
+// function addNewSheet() {
+// 	$(".input-cell").text();
+// 	$(".input-cell").css(
+// 		{
+// 			"font-family": "Noto Sans",
+// 			"font-size": 14,
+// 			"text": "",
+// 			"bold": false,
+// 			"italic": false,
+// 			"underlined": false,
+// 			"alignment": "left",
+// 			"color": "#444",
+// 			"background-color": "#fff"
+// 		}
+// 	);
+// 	addSheetTabEventListeners();
+// }
 
 function addEventsToCells() {
 	$(".input-cell").dblclick(function () {
@@ -77,13 +96,13 @@ function addEventsToCells() {
 
 	$(".input-cell").blur(function () {
 		$(this).attr("contenteditable", "false");
-		let [rowId, colId] = findRowCOl(this);
+		let [rowId, colId] = findRowCol(this);
 		cellData[selectedSheet][rowId - 1][colId - 1].text = $(this).text();
 	});
 
 	$(".input-cell").click(function (e) {
-		let [rowId, colId] = findRowCol(this); 
-		let [topCell, bottomCell, leftCell, rightCell] = getTopBottomLeftRightCell(rowId,colId);
+		let [rowId, colId] = findRowCol(this);
+		let [topCell, bottomCell, leftCell, rightCell] = getTopBottomLeftRightCell(rowId, colId);
 
 		if ($(this).hasClass("selected") && e.ctrlKey) {
 			unselectCell(this, e, topCell, bottomCell, leftCell, rightCell);
@@ -98,19 +117,24 @@ function addEventsToCells() {
 			$(".input-cell.selected").removeClass(
 				"selected top-selected bottom-selected right-selected left-selected"
 			);
-			mousemoved = true; 
+			mousemoved = true;
 			if (!startCellStored) {
 				let [rowId, colId] = findRowCol(event.target);
-				startCell = {rowId: rowId,colId: colId,};
+				startCell = {
+					rowId: rowId,
+					colId: colId,
+				};
 				startCellStored = true;
 			} else {
 				let [rowId, colId] = findRowCol(event.target);
-				endCell = { rowId: rowId, colId: colId };
+				endCell = {
+					rowId: rowId,
+					colId: colId
+				};
 				selectAllBetweenTheRange(startCell, endCell);
 			}
 		} else if (event.buttons == 0 && mousemoved) {
-			startCellStored = false; 
-			mousemoved = false;
+			startCellStored = false;
 		}
 	});
 }
@@ -225,7 +249,7 @@ function addRemoveSelectFromFontStyle(data, property) {
 function selectAllBetweenTheRange(start, end) {
 	for (let i = start.rowId < end.rowId ? start.rowId : end.rowId; i <= (start.rowId < end.rowId ? end.rowId : start.rowId); i++) {
 		for (let j = start.colId < end.colId ? start.colId : end.colId; j <= (start.colId < end.colId ? end.colId : start.colId); j++) {
-			let [topCell, bottomCell, leftCell, rightCell, ] = getTopBottomLeftRightCell(i, j);
+			let [topCell, bottomCell, leftCell, rightCell,] = getTopBottomLeftRightCell(i, j);
 			selectCell($(`#row-${i}-col-${j}`)[0], {}, topCell, bottomCell, leftCell, rightCell, true);
 		}
 	}
@@ -235,7 +259,7 @@ $(".menu-selector").change(function (e) {
 	let value = $(this).val();
 	let key = $(this).attr("id");
 	if (key == "font-family") {
-		$("font-family").css(key, value);
+		$("#font-family").css(key, value);
 	}
 	if (!isNaN(value)) {
 		value = parseInt(value);
@@ -243,7 +267,7 @@ $(".menu-selector").change(function (e) {
 	$(".input-cell.selected").css(key, value);
 	$(".input-cell.selected").each(function (index, data) {
 		let [rowId, colId] = findRowCol(data);
-		cellData[selectSheet][rowId - 1][colId - 1][key] = value;
+		cellData[selectedSheet][rowId - 1][colId - 1][key] = value;
 	});
 });
 
@@ -300,14 +324,14 @@ $(".color-pick").colorPick({
 				$("#fill-color-icon").css("border-bottom", `4px solid ${this.color}`);
 				$(".input-cell.selected").css("background-color", this.color);
 				$(".input-cell.selected").each((index, data) => {
-					let [rowId, colId] = findRowCOl(data);
+					let [rowId, colId] = findRowCol(data);
 					cellData[selectedSheet][rowId - 1][colId - 1].bgcolor = this.color;
 				});
 			} else {
 				$("#text-color-icon").css("border-bottom", `4px solid ${this.color}`);
 				$(".input-cell.selected").css("color", this.color);
 				$(".input-cell.selected").each((index, data) => {
-					let [rowId, colId] = findRowCOl(data);
+					let [rowId, colId] = findRowCol(data);
 					cellData[selectedSheet][rowId - 1][colId - 1].color = this.color;
 				});
 			}
@@ -321,95 +345,204 @@ $("#fill-color-icon, #text-color-icon").click(function (e) {
 	}, 10);
 });
 
-$(".sheet-tab").click(function (e) {
-	selectSheet(this);
-});
-
 $(".container").click(function (e) {
 	$(".sheet-options-modal").remove();
 });
 
-$(".sheet-tab").bind("contextmenu",function(e){
-    e.preventDefault();
-    selectSheet(this);
-    $(".sheet-options-modal").remove();
-    let modal = $(`<div class="sheet-options-modal">
-                        <div class="option sheet-rename">Rename</div>
-                        <div class="option sheet-delete">Delete</div>
-                    </div>`);
-    $(".container").append(modal);
-    $(".sheet-options-modal").css({"bottom" : 0.04 * $(".container").height(), "left" : e.pageX});
-    $(".sheet-rename").click(function(e) {
-        
-    });
-});
-
-
-$(".sheet-tab").click(function(e) {
-    if(!$(this).hasClass("selected")) {
-        selectSheet(this);
-    }
-});
-
 function selectSheet(ele) {
-    $(".sheet-tab.selected").removeClass("selected");
-    $(ele).addClass("selected");
-    selectedSheet = $(ele).text();
-    loadSheet();
+	addLoader();
+	$(".sheet-tab.selected").removeClass("selected");
+	$(ele).addClass("selected");
+	selectedSheet = $(ele).text();
+	setTimeout(() => {
+		loadSheet();
+		removeLoader();
+	}, 3);
 }
 
 function loadSheet() {
-    $("#cells").text("");
-    let data = cellData[selectedSheet];
-    for(let i = 1; i <= data.length; i++) {
-        let row = $('<div class="cell-row"></div>');
-        for(let j = 1; j <= data[i-1].length; j++) {
-            let cell = $(`<div id="row-${i}-col-${j}" class="input-cell" contenteditable="false">${data[i-1][j-1].text}</div>`);
-            cell.css({
-                "font-family" : data[i-1][j-1]["font-family"],
-                "font-size" : data[i-1][j-1]["font-size"] + "px",
-                "background-color" : data[i-1][j-1]["bgcolor"],
-                "color": data[i-1][j-1].color,
-                "font-weight" : data[i-1][j-1].bold ? "bold" : "",
-                "font-style" : data[i-1][j-1].italic ? "italic" : "",
-                "text-decoration" : data[i-1][j-1].underlined ? "underline" : "",
-                "text-align" : data[i-1][j-1].alignment 
-            })
-            row.append(cell);
-        }
-        $("#cells").append(row);
-    }
-    addEventsToCells();
+	$("#cells").text("");
+	let data = cellData[selectedSheet];
+	for (let i = 1; i <= data.length; i++) {
+		let row = $('<div class="cell-row"></div>');
+		for (let j = 1; j <= data[i - 1].length; j++) {
+			let cell = $(`<div id="row-${i}-col-${j}" class="input-cell" contenteditable="false">${data[i - 1][j - 1].text}</div>`);
+			cell.css({
+				"font-family": data[i - 1][j - 1]["font-family"],
+				"font-size": data[i - 1][j - 1]["font-size"] + "px",
+				"background-color": data[i - 1][j - 1]["bgcolor"],
+				"color": data[i - 1][j - 1].color,
+				"font-weight": data[i - 1][j - 1].bold ? "bold" : "",
+				"font-style": data[i - 1][j - 1].italic ? "italic" : "",
+				"text-decoration": data[i - 1][j - 1].underlined ? "underline" : "",
+				"text-align": data[i - 1][j - 1].alignment
+			});
+			row.append(cell);
+		}
+		$("#cells").append(row);
+	}
+	addEventsToCells();
 }
 
-$(".add-sheet").click(function(e){
-    totalSheets++;
-    cellData[`Sheet${totalSheets}`] = [];
-    selectedSheet = `Sheet${totalSheets}`;
-    loadNewSheet();
-    $(".sheet-tab.selected").removeClass("selected");
-    $(".sheet-tab-container").append(
-        `<div class="sheet-tab selected">Sheet${totalSheets}</div>`
-    );
-    
-    $(".sheet-tab").off("bind","click");
-    $(".sheet-tab").bind("contextmenu",function(e){
-        e.preventDefault();
-        selectSheet(this);
-        $(".sheet-options-modal").remove();
-        let modal = $(`<div class="sheet-options-modal">
+function addLoader() { 
+	$(".container").append(`<div class="sheet-modal-parent loader-parent">
+								<div class="loading">Loading...</div>
+							</div>`);
+}
+
+function removeLoader() {
+	$(".loader-parent").remove();
+}
+
+$(".add-sheet").click(function (e) {
+	addLoader();
+	totalSheets++;
+	lastlyAddedSheetNumber++;
+	while (Object.keys(cellData).includes("Sheet" + lastlyAddedSheetNumber)) { 
+		lastlyAddedSheetNumber++;
+	}
+	cellData[`Sheet${lastlyAddedSheetNumber}`] = [];
+	selectedSheet = `Sheet${lastlyAddedSheetNumber}`;
+
+	$(".sheet-tab.selected").removeClass("selected"); 
+	$(".sheet-tab-container").append(`<div class="sheet-tab selected">Sheet${lastlyAddedSheetNumber}</div>`); 
+
+	$(".sheet-tab.selected")[0].scrollIntoView();
+	setTimeout(() => {
+		loadNewSheet(); 
+		removeLoader();
+	}, 3);
+
+});
+
+function addSheetTabEventListeners() {
+	$(".sheet-tab.selected").bind("contextmenu", function (e) {
+		e.preventDefault();
+		$(".sheet-options-modal").remove();
+		let modal = $(`<div class="sheet-options-modal">
                             <div class="option sheet-rename">Rename</div>
                             <div class="option sheet-delete">Delete</div>
                         </div>`);
-        $(".container").append(modal);
-        $(".sheet-options-modal").css({"bottom" : 0.04 * $(".container").height(), "left" : e.pageX});
-        $(".sheet-rename").click(function(e) {
-            
-        });
-    });
-    $(".sheet-tab").click(function(e) {
-        if(!$(this).hasClass("selected")) {
-            selectSheet(this);
-        }
-    });
-});
+		$(".container").append(modal);
+		$(".sheet-options-modal").css({
+			"bottom": 0.04 * $(".container").height(),
+			"left": e.pageX
+		});
+
+		$(".sheet-rename").click(function (e) {
+			let renameModal = `<div class="sheet-modal-parent">
+									<div class="sheet-rename-modal">
+										<div class="sheet-modal-title">
+											<span>Rename Sheet</span>
+										</div>
+										<div class="sheet-modal-input-container">
+											<span class="sheet-modal-input-title">Rename Sheet to:</span>
+											<input class="sheet-modal-input" type="text" />
+										</div>
+										<div class="sheet-modal-confirmation">
+											<div class="button ok-button">OK</div>
+											<div class="button cancel-button">Cancel</div>
+										</div>
+									</div>
+								</div>`;
+			$(".container").append(renameModal);
+			$(".cancel-button").click(function (e) {
+				$(".sheet-modal-parent").remove();
+			});
+			$(".ok-button").click(function (e) {
+				renameSheet();
+			});
+			$(".sheet-modal-input").keypress(function (e) {
+				if (e.key == "Enter") {
+					renameSheet();
+				}
+			})
+		});
+
+		$(".sheet-delete").click(function (e) {
+			let deleteModal = `<div class="sheet-modal-parent">
+									<div class="sheet-delete-modal">
+										<div class="sheet-modal-title">
+											<span>Sheet Name</span>
+										</div>
+										<div class="sheet-modal-detail-container">
+											<span class="sheet-modal-detail-title">Are you sure?</span>
+										</div>
+										<div class="sheet-modal-confirmation">
+											<div class="button delete-button">
+												<div class="material-icons delete-icon">delete</div>
+												Delete
+											</div>
+											<div class="button cancel-button">Cancel</div>
+										</div>
+									</div>
+								</div>`;
+			$(".container").append(deleteModal);
+			$(".cancel-button").click(function (e) {
+				$(".sheet-modal-parent").remove();
+			});
+			$(".delete-button").click(function (e) {
+				if (totalSheets > 1) {
+					$(".sheet-modal-parent").remove();
+					let keysArray = Object.keys(cellData);
+					let selectedSheetIndex = keysArray.indexOf(selectedSheet);
+					let currentSelectedSheet = $(".sheet-tab.selected");
+					delete cellData[selectedSheet];
+					if (selectedSheetIndex == 0) {
+						selectSheet(currentSelectedSheet.next()[0]);
+						currentSelectedSheet.remove();
+					} else {
+						selectSheet(currentSelectedSheet.prev()[0]);
+						currentSelectedSheet.remove();
+					}
+					selectSheet($(".sheet-tab.selected")[0]); 
+					totalSheets--;
+				}
+			})
+		})
+
+		if (!$(this).hasClass("selected")) {
+			selectSheet(this);
+		}
+	});
+
+	$(".sheet-tab.selected").click(function (e) {
+		if (!$(this).hasClass("selected")) {
+			selectSheet(this); 
+		}
+	});
+}
+
+function renameSheet() {
+	let newSheetName = $(".sheet-modal-input").val(); 
+	if (newSheetName && !Object.keys(cellData).includes(newSheetName)) {
+		cellData[newSheetName] = cellData[selectedSheet]; 
+		delete cellData[selectedSheet];
+		selectedSheet = newSheetName; 
+		$(".sheet-tab.selected").text(newSheetName); 
+		$(".sheet-modal-parent").remove();
+	} else {
+		$(".error").remove(); 
+		$(".sheet-modal-input-container").append(`
+            <div class="error"> Sheet Name is not Valid or Sheet already exists! </div>
+        `);
+	}
+}
+
+$(".left-scroller").click(function (e) {
+	let keysArray = Object.keys(cellData);
+	let selectedSheetIndex = keysArray.indexOf(selectedSheet);
+	if (selectedSheet != 0) {
+		selectSheet($(".sheet-tab.selected").prev()[0]);
+	}
+	$(".sheet-tab.selected")[0].scrollIntoView();
+})
+
+$(".right-scroller").click(function (e) {
+	let keysArray = Object.keys(cellData);
+	let selectedSheetIndex = keysArray.indexOf(selectedSheet);
+	if (selectedSheet != keysArray.length - 1) {
+		selectSheet($(".sheet-tab.selected").next()[0]);
+	}
+	$(".sheet-tab.selected")[0].scrollIntoView();
+})

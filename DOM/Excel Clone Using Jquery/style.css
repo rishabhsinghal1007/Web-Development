@@ -21,10 +21,10 @@ body {
 	background-color: #217346;
 	color: #fff;
 	display: flex;
-	justify-content: center;
 	/* horizontal alignment */
-	align-items: center;
+	justify-content: center;
 	/* vertical alignment */
+	align-items: center;
 	font-size: 1rem;
 }
 
@@ -64,7 +64,6 @@ body {
 	display: flex;
 	height: 6vh;
 	align-items: center;
-	/* background-color: lightgray; */
 }
 
 .menu-icon {
@@ -142,7 +141,6 @@ body {
 	flex-wrap: wrap;
 	flex-direction: row;
 	width: 100vw;
-	flex-wrap: wrap;
 }
 
 #select-all {
@@ -172,11 +170,6 @@ body {
 	width: calc(100vw - 25px);
 	border: 1px solid lightgray;
 	overflow: scroll;
-}
-
-.sheet-bar {
-	height: 4vh;
-	width: 100vw;
 }
 
 .column-name {
@@ -263,7 +256,7 @@ body {
 }
 
 .sheet-scroller {
-	margin-right: 20px;
+	margin-right: 5px;
 	display: flex;
 	align-items: center;
 }
@@ -272,6 +265,7 @@ body {
 	margin-right: 10px;
 	display: flex;
 	border-left: 0.5px solid lightgray;
+	overflow: scroll;
 }
 
 .sheet-tab {
@@ -303,6 +297,7 @@ body {
 
 .add-sheet {
 	color: #217346;
+	margin-right: 10px;
 }
 
 .add-sheet:hover,
@@ -435,4 +430,27 @@ body {
 
 .delete-icon {
 	margin-right: 5px;
+}
+
+.loader-parent {
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.loading {
+	font-size: 30px;
+	color: #217346;
+}
+
+.error {
+	color: red;
+	font-size: 14px;
+}
+
+.sheet-tab-container::-webkit-scrollbar {
+	display: none;
+}
+
+.sheet-tab-container {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 }
