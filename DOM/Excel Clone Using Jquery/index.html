@@ -18,7 +18,7 @@
         <div class="title-bar">Book-1 Excel</div>
 
         <div class="menu-bar">
-            <div class="menu-bar-item">File</div>
+            <div class="menu-bar-item" id="menu-file">File</div>
             <div class="menu-bar-item selected">Home</div>
             <div class="menu-bar-item">Insert</div>
             <div class="menu-bar-item">Page Layout</div>
@@ -28,9 +28,9 @@
         </div>
 
         <div class="menu-icon-bar">
-            <div class="material-icons menu-icon">content_cut</div>
-            <div class="material-icons menu-icon">content_copy</div>
-            <div class="material-icons menu-icon">content_paste</div>
+            <div class="material-icons menu-icon" id="cut">content_cut</div>
+            <div class="material-icons menu-icon" id="copy">content_copy</div>
+            <div class="material-icons menu-icon" id="paste">content_paste</div>
 
             <select class="menu-selector" id="font-family">
                 <option style="font-family: Noto Sans;" value="Noto Sans">Noto Sans</option>
@@ -127,22 +127,22 @@
        </div> -->
 
         <!-- <div class="sheet-modal-parent">
-        <div class="sheet-delete-modal">
-            <div class="sheet-modal-title">
-                <span>Sheet Name</span>
-            </div>
-            <div class="sheet-modal-detail-container">
-                <span class="sheet-modal-detail-title">Are You Sure</span>
-            </div>
-            <div class="sheet-modal-confirmation">
-                <div class="button delete-button">
-                    <div class="material-icons delete-icon">delete</div>
-                     Delete
+            <div class="sheet-delete-modal">
+                <div class="sheet-modal-title">
+                    <span>Sheet Name</span>
                 </div>
-                <div class="button cancel-button">Cancel</div>
+                <div class="sheet-modal-detail-container">
+                    <span class="sheet-modal-detail-title">Are You Sure</span>
+                </div>
+                <div class="sheet-modal-confirmation">
+                    <div class="button delete-button">
+                        <div class="material-icons delete-icon">delete</div>
+                        Delete
+                    </div>
+                    <div class="button cancel-button">Cancel</div>
+                </div>
             </div>
-        </div>
-   </div> -->
+        </div> -->
 
         <!-- <div class="sheet-options-modal">
             <div class="option option-1">Rename</div>
@@ -176,6 +176,22 @@
             </div>
             <div class="file-transparent-modal"></div>
         </div> -->
+
+        <!-- <div class="sheet-modal-parent">
+            <div class="sheet-save-modal">
+                <div class="sheet-modal-title">
+                    <span>${$(".title-bar").text()}</span>
+                </div>
+                <div class="sheet-modal-detail-container">
+                    <span class="sheet-modal-detail-title">Do You Want to Save Changes?</span>
+                </div>
+                <div class="sheet-modal-confirmation">
+                    <div class="button ok-button">Save</div>
+                    <div class="button cancel-button">Cancel</div>
+                </div>
+            </div>
+        </div> -->
+
     </div>
     <script src="./Flat-HTML5-Palette-Color-Picker-For-jQuery-colorPick-js/src/colorPick.js"></script>
     <script src="perfect-scrollbar/dist/perfect-scrollbar.js"></script>
