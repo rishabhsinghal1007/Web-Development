@@ -300,8 +300,7 @@ body {
 	margin-right: 10px;
 }
 
-.add-sheet:hover,
-.scroller:hover {
+.add-sheet:hover, .scroller:hover {
 	cursor: pointer;
 	transform: scale(1.2);
 }
@@ -314,8 +313,7 @@ body {
 	position: absolute;
 	background-color: white;
 	/* padding: 15px; */
-	box-shadow: rgb(0 0 0 / 13%) 0px 6.4px 14.4px 0px,
-		rgb(0 0 0 / 11%) 0px 1.2px 3.6px 0px;
+	box-shadow: rgb(0 0 0 / 13%) 0px 6.4px 14.4px 0px, rgb(0 0 0 / 11%) 0px 1.2px 3.6px 0px;
 }
 
 .option {
@@ -340,12 +338,10 @@ body {
 	align-items: center;
 }
 
-.sheet-rename-modal,
-.sheet-delete-modal {
+.sheet-rename-modal, .sheet-delete-modal {
 	position: absolute;
 	background-color: white;
-	box-shadow: rgb(0 0 0 / 13%) 0px 6.4px 14.4px 0px,
-		rgb(0 0 0 / 11%) 0px 1.2px 3.6px 0px;
+	box-shadow: rgb(0 0 0 / 13%) 0px 6.4px 14.4px 0px, rgb(0 0 0 / 11%) 0px 1.2px 3.6px 0px;
 	padding: 15px;
 	min-width: 400px;
 }
@@ -357,8 +353,7 @@ body {
 	font-weight: bold;
 }
 
-.sheet-modal-input-container,
-.sheet-modal-detail-container {
+.sheet-modal-input-container, .sheet-modal-detail-container {
 	padding: 20px;
 }
 
@@ -399,16 +394,14 @@ body {
 	align-items: center;
 }
 
-.ok-button,
-.delete-button {
+.ok-button, .delete-button {
 	background-color: #217346;
 	color: white;
 	height: 40px;
 	border-radius: 3px;
 }
 
-.ok-button:hover,
-.delete-button:hover {
+.ok-button:hover, .delete-button:hover {
 	background-color: #175533;
 	cursor: pointer;
 }
