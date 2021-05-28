@@ -41,6 +41,29 @@
         ctx.lineWidth = 8;
         ctx.lineTo(150, 100);
         ctx.stroke();
+
+        // tick draw in a rectangle.
+        ctx.beginPath();
+        ctx.strokeStyle = "blue";
+        ctx.lineWidth = 2;
+        ctx.strokeRect(28.5, 23.3, 33.5, 39);
+        ctx.moveTo(30, 45);
+        ctx.lineTo(45, 60);
+        ctx.lineTo(60, 25);
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // cross draw in rectangle
+        ctx.beginPath();
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 2;
+        ctx.strokeRect(28.5, 93, 34, 40);
+        ctx.moveTo(28.5, 93);
+        ctx.lineTo(62.5, 133);
+        ctx.moveTo(62.5, 93);
+        ctx.lineTo(28.5, 133);
+        ctx.stroke();
     </script>
 
 </body>
