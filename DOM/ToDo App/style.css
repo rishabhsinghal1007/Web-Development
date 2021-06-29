@@ -12,9 +12,7 @@
   color: black;
 }
 
-.container,
-.input-container,
-.task-container {
+.container, .input-container, .task-container {
   border: 1px solid;
 }
 
@@ -24,8 +22,9 @@ h1 {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   padding: 1vh;
   border-width: 1px;
-  border-style:solid;
+  border-style: solid;
 }
+
 .input-container {
   height: 20vh;
   width: 100%;
@@ -35,6 +34,8 @@ h1 {
 .task-container {
   height: 70vh;
   overflow: hidden;
+  overflow-y: scroll;
+  
 }
 
 .task-list {
@@ -59,8 +60,7 @@ h1 {
 }
 
 @media screen and (max-width: 768px) {
-  .task-input,
-  .task-container li {
+  .task-input, .task-container li {
     width: 70%;
   }
 }
