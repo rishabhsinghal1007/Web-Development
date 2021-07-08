@@ -31,19 +31,20 @@ h1 {
    position: relative;
    padding: 3rem;
    display: flex;
-   /* justify-content: space-evenly; */
+   justify-content: space-evenly;
+   flex-wrap: wrap;
+   overflow-y: auto;
 }
 
-.filter-container,
-.add-delete-container {
+.filter-container, .add-delete-container {
    height: 8vh;
    margin-top: 2vh;
    border-radius: 3px;
    background-color: cornflowerblue;
 }
-.add-delete-container,
-h1 {
-   margin-left: 16vw;
+
+.add-delete-container, h1 {
+   margin-left: 13vw;
 }
 
 .filter-container {
@@ -62,10 +63,7 @@ h1 {
    width: 25%;
 }
 
-.pink-color-btn,
-.blue-color-btn,
-.green-color-btn,
-.bisque-color-btn {
+.pink-color-btn, .blue-color-btn, .green-color-btn, .bisque-color-btn {
    display: block;
    width: 40%;
    height: 40%;
@@ -76,27 +74,19 @@ h1 {
    margin-right: calc(4.5vw * 0.3);
 }
 
-.pink-color-btn,
-.modal-pink-filter,
-.ticket-color-pink {
+.pink-color-btn, .modal-pink-filter, .ticket-color-pink {
    background-color: pink;
 }
 
-.blue-color-btn,
-.modal-blue-filter,
-.ticket-color-blue {
+.blue-color-btn, .modal-blue-filter, .ticket-color-blue {
    background-color: blue;
 }
 
-.green-color-btn,
-.modal-green-filter,
-.ticket-color-green {
+.green-color-btn, .modal-green-filter, .ticket-color-green {
    background-color: green;
 }
 
-.bisque-color-btn,
-.modal-bisque-color-filter,
-.ticket-color-bisque {
+.bisque-color-btn, .modal-bisque-color-filter, .ticket-color-bisque {
    background-color: red;
 }
 
@@ -105,8 +95,11 @@ h1 {
    cursor: pointer;
 }
 
-.add,
-.delete {
+.filter.active {
+   background-color: black;
+}
+
+.add, .delete {
    height: 100%;
    width: 50%;
 }
@@ -124,8 +117,7 @@ h1 {
    padding-bottom: 40%;
 }
 
-.add:hover,
-.delete:hover {
+.add:hover, .delete:hover {
    background-color: lightgrey;
    cursor: pointer;
 }
@@ -174,10 +166,10 @@ h1 {
 }
 
 .ticket {
-   height: 8rem;
-   width: 16rem;
+   height: 9rem;
+   width: 14rem;
    background-color: aliceblue;
-   margin: 0 auto 0 auto;
+   margin-bottom: 15px;
 }
 
 .ticket-color {
@@ -196,4 +188,8 @@ h1 {
    height: 79%;
    width: 100%;
    padding: 3%;
+}
+
+.ticket.active {
+   box-shadow: 0 0 3px 1px;
 }
