@@ -1,0 +1,32 @@
+[
+    {
+        "name": "rishabh",
+        "lastname": "singhal",
+        "age": 21,
+        "friends": [
+            "steve",
+            "bruce",
+            "peter"
+        ],
+        "prop": null,
+        "prop-again": "",
+        "key": {
+            "new": "new Object"
+        }
+    },
+    {
+        "name": "rishabh",
+        "lastname": "singhal",
+        "age": 21,
+        "friends": [
+            "steve",
+            "bruce",
+            "peter"
+        ],
+        "prop": null,
+        "prop-again": "",
+        "key": {
+            "new": "new Object"
+        }
+    }
+]
